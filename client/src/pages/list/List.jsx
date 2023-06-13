@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import "./List.css";
@@ -7,12 +7,14 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch.js";
+import { useContext } from "react";
+import { SearchContext } from "../../context/SearchContext";
 
 function List() {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state?.destination);
   console.log(destination)
-  const [date, setDate] = useState(location.state?.dates);
+  const [dates, setDates] = useState(location.state?.dates);
   const [openDate, setOpenDate] = useState(false);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
@@ -21,8 +23,12 @@ function List() {
     `/hotels/?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
 
+    const navigate = useNavigate();
+  const {dispatch} = useContext(SearchContext)
   const handleClick = () => {
     reFetch();
+    dispatch({type:"NEW_SEARCH",payload:{destination,dates,options}})
+    navigate("/hotels", { state: { destination, dates, options } });
   };
 
   return (
@@ -40,15 +46,15 @@ function List() {
             <div className="lsItem">
               <label htmlFor="">Check-in date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
+                dates[0].startDate,
                 "dd/MM/yyyy"
-              )} to ${format(date[0].endDate, "dd/MM/yyyy")}`}</span>
+              )} to ${format(dates[0].endDate, "dd/MM/yyyy")}`}</span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDate([item.selection])}
+                  onChange={(item) => setDates([item.selection])}
                   minDate={new Date()}
                   moveRangeOnFirstSelection={false}
-                  ranges={date}
+                  ranges={dates}
                 />
               )}
             </div>
