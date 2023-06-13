@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 
 
-axios.defaults.baseURL='/api'
+axios.defaults.baseURL='https://booking-app-z2m7.onrender.com/api'
 
 const Login = ({ type }) => {
   const [credentials, setCredentials] = useState({

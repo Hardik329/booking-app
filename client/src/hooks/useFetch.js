@@ -1,7 +1,7 @@
 import axios from "axios" 
 import { useState, useEffect } from "react";
 
-axios.defaults.baseURL='/api'
+axios.defaults.baseURL='https://booking-app-z2m7.onrender.com/api'
 
 
 
