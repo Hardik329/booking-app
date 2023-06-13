@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 
+axios.defaults.baseURL='/api'
+
 const Login = ({ type }) => {
   console.log(type);
   const [email, setEmail] = useState("");

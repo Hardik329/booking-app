@@ -1,6 +1,8 @@
 import axios from "axios" 
 import { useState, useEffect } from "react";
 
+axios.defaults.baseURL='/api'
+
 
 
 const useFetch = (url)=>{

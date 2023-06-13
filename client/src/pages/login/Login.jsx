@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 
+
+axios.defaults.baseURL='/api'
+
 const Login = ({ type }) => {
   const [credentials, setCredentials] = useState({
     username: undefined,
