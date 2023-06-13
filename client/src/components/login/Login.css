@@ -1,0 +1,30 @@
+.container{
+    width:calc(25%);
+    min-width:max-content;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+
+}
+
+.base{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.input{
+    
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+    
+}
+.btn{
+    margin-top: 18px;
+
+}
